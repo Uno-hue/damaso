@@ -251,158 +251,145 @@ span {
   color: #0b0c1a;
 }
 
-/* ACHIEVEMENTS SECTION */
+/* ===== FULLSCREEN, NO SCROLL ===== */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* EDUCATION SECTION - 5 cards fit in one line, full viewport width */
 .education {
-  /* background-color: #12131f; */
-  background-color: transparent;
-  padding: 4rem 1rem;
+  height: 100vh;                 /* Full screen height */
+  padding: 2rem 2rem;            /* Padding around content */
+  background: linear-gradient(180deg, #0b0c1a, #131b33);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;       /* Center vertically */
+  box-sizing: border-box;
+  max-width: 100vw;
+  margin: 0 auto;
   font-family: 'Poppins', sans-serif;
   color: #ccc;
-  max-width: 900px;
-  margin: 0 auto;
+  overflow: hidden;
 }
 
 .education .heading {
-  margin-top: 5rem; /* added margin to avoid navbar overlap */
-  margin-bottom: 4rem;
   text-align: center;
-  font-size: 3rem;
-  font-weight: 700;
-  color: #eaeaea;
+  font-size: 2.3rem;
+  margin-bottom: 1.5rem;
+  color: #6eeaff;
 }
 
-/* TIMELINE AS CARDS */
+/* Grid container for timeline cards */
 .timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Exactly 5 columns */
+  gap: 1rem;
+  width: 100%;
+  height: 60vh;               /* Cards fit nicely inside */
+  align-items: stretch;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Individual card */
+.timeline-item {
+  background: #11172b;
+  border-radius: 1rem;
+  padding: 1.2rem;
+  text-align: center;
+  box-shadow: 0 0 12px rgba(110, 234, 255, 0.12);
+  border: 1px solid rgba(110, 234, 255, 0.15);
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
-  border-left: none; /* remove vertical line */
-  padding-left: 0;
-}
-
-/* EACH TIMELINE ITEM AS CARD */
-.timeline-item {
-  display: flex;
-  background: transparent;
-  border: 2px solid #6eeaff;
-  border-radius: 12px;
-  padding: 2rem;           /* more padding for breathing room */
-  gap: 2.5rem;             /* slightly bigger gap */
   align-items: center;
-  min-height: 150px;       /* ensure some min height */
-
-  /* Added transitions for smooth animations */
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
-  cursor: pointer; /* show interactive cursor */
+  height: 100%;              /* Fill vertical space */
+  transition: 0.4s ease;
+  box-sizing: border-box;
 }
 
 .timeline-item:hover {
-  background-color: rgba(110, 234, 255, 0.05); /* very subtle hover highlight */
-  transform: scale(1.03);
-  box-shadow: 0 0 8px 2px rgba(110, 234, 255, 0.3); /* softened shadow */
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px rgba(110, 234, 255, 0.5);
 }
 
-/* IMAGE CONTAINER */
+/* Image container - smaller size */
 .timeline-icon {
-  flex-shrink: 0;
-  width: 140px;          /* fixed size, slightly larger */
-  height: 140px;
-  border-radius: 16px;
+  width: 69%;
+  height: 89px;          /* Reduced height */
+  border-radius: 10px;
   overflow: hidden;
   border: 2px solid #6eeaff;
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-bottom: 0.8rem;
+  flex-shrink: 0;
 }
 
 .timeline-icon img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 16px;
-  display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
-/* CONTENT CONTAINER */
-.timeline-content {
-  flex: 1;
-  color: #e0e6f1;               /* lighter text for readability */
-  font-weight: 400;
-  line-height: 1.6;
+.timeline-item:hover .timeline-icon img {
+  transform: scale(1.05);
 }
 
-/* TITLE */
+/* Text styles */
 .timeline-content h3 {
-  font-size: 2.2rem;            /* bigger & bolder */
-  font-weight: 700;
-  color: #4db8e6;               /* softened accent color */
-  margin-bottom: 0.6rem;
-  letter-spacing: 0.02em;
-
-  /* Removed glowing text shadow */
-  /* Added smooth transition */
-  transition: color 0.25s ease;
+  color: #6eeaff;
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Change title style on card hover */
-.timeline-item:hover .timeline-content h3 {
-  color: #6eeaff; /* brighter but not glowing */
-}
-
-/* PARAGRAPH */
 .timeline-content p {
-  font-size: 1.5rem;            /* larger for better readability */
-  color: #bfc7d1;               /* soft but clear */
-  margin-top: 0;
+  color: #d4e7ff;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* RESPONSIVE TWEAKS */
-@media (max-width: 768px) {
+/* Responsive: 3 cards for medium screens */
+@media (max-width: 1200px) {
+  .timeline {
+    grid-template-columns: repeat(3, 1fr);
+    height: auto;
+  }
   .timeline-item {
-    flex-direction: column;
-    text-align: center;
-    padding: 1.5rem;
-    gap: 1.5rem;
+    height: auto;
   }
-
-  .timeline-icon {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-  }
-
-  .timeline-content h3 {
-    font-size: 1.8rem;
-    color: #4db8e6;
-    text-shadow: none;
-  }
-
+  .timeline-content h3,
   .timeline-content p {
-    font-size: 1.3rem;
+    white-space: normal;
   }
 }
 
-@media (max-width: 480px) {
+/* Responsive: 1 card per row on small screens */
+@media (max-width: 600px) {
+  .timeline {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
   .timeline-item {
-    padding: 1rem;
-    gap: 1rem;
+    height: auto;
   }
-
   .timeline-icon {
-    width: 140px;
-    height: 140px;
+    height: 90px;
   }
-
-  .timeline-content h3 {
-    font-size: 1.5rem;
-  }
-
+  .timeline-content h3,
   .timeline-content p {
-    font-size: 1.1rem;
+    white-space: normal;
   }
 }
- 
+
+
 /* SPLASH SCREEN */
 .splash {
   position: fixed;
@@ -485,4 +472,129 @@ span {
 }
 .timeline-item:nth-child(5) {
   animation-delay: 0.9s;
+}
+
+/* ACHIEVEMENTS SECTION - FITS ONE SCREEN */
+.achievements {
+  height: 100vh;               /* Fit exactly one screen */
+  padding: 2rem 2rem;          /* Smaller padding */
+  background: linear-gradient(180deg, #0b0c1a, #131b33);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;     /* Center everything vertically */
+}
+
+.achievements .heading {
+  text-align: center;
+  font-size: 2.3rem;
+  margin-bottom: 1.5rem;       /* Reduced spacing */
+  color: #6eeaff;
+}
+
+.achievements-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+  gap: 1.2rem;                  /* Smaller spacing */
+  height: 60vh;                 /* Fit cards inside screen */
+  align-items: center;
+}
+
+/* INDIVIDUAL BOX */
+.achievement-box {
+  background: #11172b;
+  border-radius: 1rem;
+  padding: 1.2rem;              /* Smaller padding */
+  text-align: center;
+  transition: 0.4s ease;
+  box-shadow: 0 0 12px rgba(110,234,255,.12);
+  border: 1px solid rgba(110,234,255,.15);
+}
+
+.achievement-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px rgba(110, 234, 255, 0.5);
+}
+
+/* IMAGE SIZE SMALLER TO FIT SCREEN */
+.achievement-box img {
+  width: 100%;
+  height: 120px;                /* Smaller height */
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0.8rem;
+}
+
+/* MULTIPLE IMAGES STYLE */
+.multi-img {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 0.8rem;
+}
+
+.multi-img img {
+  width: 33%;
+  height: 90px;                /* Reduced height */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* TEXT */
+.achievement-box h3 {
+  color: #6eeaff;
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.achievement-box p {
+  color: #d4e7ff;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+/* ENTRANCE ANIMATION */
+.achievement-box {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* STAGGER EFFECT */
+.achievement-box:nth-child(1) { animation-delay: 0.1s; }
+.achievement-box:nth-child(2) { animation-delay: 0.2s; }
+.achievement-box:nth-child(3) { animation-delay: 0.3s; }
+.achievement-box:nth-child(4) { animation-delay: 0.4s; }
+.achievement-box:nth-child(5) { animation-delay: 0.5s; }
+.achievement-box:nth-child(6) { animation-delay: 0.6s; }
+.achievement-box:nth-child(7) { animation-delay: 0.7s; }
+.achievement-box:nth-child(8) { animation-delay: 0.8s; }
+
+/* KEYFRAMES */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth transition for transform and shadow */
+.timeline-item, .achievement-box {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+/* Hover effect: zoom + lift + glow */
+.timeline-item:hover, .achievement-box:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 0 30px rgba(110, 234, 255, 0.6);
+}
+
+/* Extra: zoom icon image inside the card */
+.timeline-item:hover .timeline-icon img,
+.achievement-box:hover img {
+  transform: scale(1.1);
+  transition: transform 0.4s ease;
 }
