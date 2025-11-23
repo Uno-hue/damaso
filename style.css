@@ -10,7 +10,12 @@
   font-family: 'Poppins', sans-serif;
 }
 
-html {
+/* 🔥 FIX 1 — NO SCROLL */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;      /* stops all scrolling on whole page */
   font-size: 62.5%;
   scroll-behavior: smooth;
 }
@@ -21,6 +26,8 @@ body {
   overflow-x: hidden;
   background: linear-gradient(180deg, #0b0c1a, #101529, #131b33);
   color: #eaeaea;
+  display: flex;
+  flex-direction: column;
 }
 
 /* HEADER */
@@ -29,6 +36,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
+  height: 6rem;              /* fixed header height */
   padding: 1rem 9%;
   background-color: rgba(13, 15, 35, 0.85);
   backdrop-filter: blur(10px);
@@ -69,9 +77,14 @@ nav a.active {
 /* SECTION BASE */
 section {
   min-height: 100vh;
-  padding: 8rem 9% 5rem;
   max-width: 1100px;
-  margin: 0 auto 4rem;
+  margin: 0 auto 0;         /* no bottom margin to prevent scroll */
+  padding-left: 9%;
+  padding-right: 9%;
+  padding-top: 6rem;        /* space for fixed header */
+  padding-bottom: 0;
+  box-sizing: border-box;
+  flex: 1;                  /* fills vertical space inside flex body */
 }
 
 /* HEADINGS */
@@ -88,23 +101,72 @@ section {
   color: #9c6eff;
 }
 
-/* HOME */
+/* FINAL HOMEPAGE FIX — PERFECT SPACING + NO SCROLL + CENTERED */
+
+/* SPACING FIX START */
 .home {
+  height: calc(100vh - 6rem); /* full viewport height minus header */
+  max-width: 1100px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  flex-direction: row;
-  padding-top: 8rem;
-  margin-bottom: 4rem;
+  gap: 3rem; /* slightly reduce gap */
+  padding: 0 9%; /* keep horizontal padding consistent */
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .home .home-content {
-  flex: 1 1 400px;
-  min-width: 300px;
-  order: 1;
+  flex: 1 1 45%; /* use relative width for better scaling */
+  min-width: 280px;
+  max-height: calc(100vh - 10rem); /* prevent overflow with header & margins */
+
+  /* DISABLE ALL SCROLLING */
+  overflow-y: hidden; /* no vertical scroll */
+  overflow-x: hidden; /* no horizontal scroll */
+  padding: 2rem 1.5rem; /* comfortable padding */
+
+  /* Complementary background */
+   background: linear-gradient(180deg, #0b0c1a, #101529,);
+
+  /* Removed visible border/glow */
+  box-shadow: none;
+  backdrop-filter: blur(6px);
+
+  /* hide scrollbar if any */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
 }
+
+.home .home-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Home image */
+.home-img {
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
+  order: 2;
+  animation: floatGlow 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.home-img img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 50%;
+  box-shadow: 0 0 25px #6eeaff;
+  transition: 0.3s;
+}
+
+.home-img img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 45px #9c6eff;
+}
+
+/* SPACING FIX END */
 
 .home .home-content h1 {
   font-size: 5rem;
@@ -126,29 +188,6 @@ section {
 
 span {
   color: #6eeaff;
-}
-
-/* Home image */
-.home-img {
-  flex: 1 1 300px;
-  display: flex;
-  justify-content: center;
-  order: 2;
-  animation: floatGlow 6s ease-in-out infinite;
-  will-change: transform;
-}
-
-.home-img img {
-  width: 100%;
-  max-width: 350px;
-  border-radius: 50%;
-  box-shadow: 0 0 25px #6eeaff;
-  transition: 0.3s;
-}
-
-.home-img img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 45px #9c6eff;
 }
 
 /* SOCIAL ICONS */
@@ -210,20 +249,13 @@ span {
   cursor: pointer;
 }
 
-/* Zoom animation keyframes */
+/* Zoom animation */
 @keyframes zoomIn {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
-/* Follow Me button hover with zoom animation */
 .follow-card .btn:hover {
   background: #6eeaff;
   color: #0b0c1a;
@@ -251,6 +283,7 @@ span {
   color: #0b0c1a;
 }
 
+
 /* ===== FULLSCREEN, NO SCROLL ===== */
 html, body {
   height: 100%;
@@ -271,13 +304,6 @@ html, body {
   font-family: 'Poppins', sans-serif;
   color: #ccc;
   overflow: hidden;
-}
-
-.education .heading {
-  text-align: center;
-  font-size: 2.3rem;
-  margin-bottom: 1.5rem;
-  color: #6eeaff;
 }
 
 /* Grid container for timeline cards */
@@ -389,7 +415,6 @@ html, body {
   }
 }
 
-
 /* SPLASH SCREEN */
 .splash {
   position: fixed;
@@ -459,142 +484,226 @@ html, body {
 
 /* Stagger animations with delays */
 .timeline-item:nth-child(1) {
-  animation-delay: 0.5s;
+  animation-delay: 0.3s;
 }
 .timeline-item:nth-child(2) {
-  animation-delay: 0.8s;
-}
-.timeline-item:nth-child(3) {
   animation-delay: 0.5s;
 }
-.timeline-item:nth-child(4) {
+.timeline-item:nth-child(3) {
   animation-delay: 0.7s;
 }
-.timeline-item:nth-child(5) {
+.timeline-item:nth-child(4) {
   animation-delay: 0.9s;
 }
+.timeline-item:nth-child(5) {
+  animation-delay: 1.1s;
+}
 
-/* ACHIEVEMENTS SECTION - FITS ONE SCREEN */
+/* PAGE NAVIGATION BUTTONS — SAME STYLE AS FOLLOW ME BUTTON */
+.page-buttons {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.page-buttons .btn {
+  font-size: 1.8rem;
+  padding: 0.7rem 1.8rem;
+  border: 2px solid #6eeaff;
+  color: #6eeaff;
+  background: transparent;
+  border-radius: 2rem;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s;
+  cursor: pointer;
+}
+
+/* Hover + Glow + Zoom (same as Follow me button) */
+.page-buttons .btn:hover {
+  background: #6eeaff;
+  color: #0b0c1a;
+  box-shadow: 0 0 15px #6eeaff;
+  animation: zoomIn 0.6s ease forwards;
+}
+
 .achievements {
-  height: 100vh;               /* Fit exactly one screen */
-  padding: 2rem 2rem;          /* Smaller padding */
+  min-height: 100vh;
+  padding: 8rem 3rem 3rem; /* keep padding for header space */
   background: linear-gradient(180deg, #0b0c1a, #131b33);
   display: flex;
   flex-direction: column;
-  justify-content: center;     /* Center everything vertically */
+  justify-content: flex-start;
+  box-sizing: border-box;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+  color: #ccc;
+  overflow: hidden;  /* disable scrolling */
 }
 
+/* Hide the heading completely */
 .achievements .heading {
-  text-align: center;
-  font-size: 2.3rem;
-  margin-bottom: 1.5rem;       /* Reduced spacing */
-  color: #6eeaff;
+  display: none;
 }
 
+/* Grid: 4 columns, fixed row height, enough gap to prevent overflow */
 .achievements-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-  gap: 1.2rem;                  /* Smaller spacing */
-  height: 60vh;                 /* Fit cards inside screen */
-  align-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 190px;
+  gap: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: stretch;
+  overflow: hidden;
+  max-height: calc(2 * 190px + 1.5rem);
 }
 
-/* INDIVIDUAL BOX */
 .achievement-box {
   background: #11172b;
   border-radius: 1rem;
-  padding: 1.2rem;              /* Smaller padding */
+  padding: 1rem;
   text-align: center;
-  transition: 0.4s ease;
-  box-shadow: 0 0 12px rgba(110,234,255,.12);
-  border: 1px solid rgba(110,234,255,.15);
+  box-shadow: 0 0 12px rgba(110,234,255,0.12);
+  border: 1px solid rgba(110,234,255,0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.achievement-box:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 30px rgba(110, 234, 255, 0.5);
-}
-
-/* IMAGE SIZE SMALLER TO FIT SCREEN */
 .achievement-box img {
   width: 100%;
-  height: 120px;                /* Smaller height */
+  height: 110px;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 0.8rem;
+  transition: transform 0.3s ease;
 }
 
-/* MULTIPLE IMAGES STYLE */
-.multi-img {
-  display: flex;
-  gap: 5px;
-  margin-bottom: 0.8rem;
+.achievement-box:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 0 25px rgba(110,234,255,0.45);
 }
 
-.multi-img img {
-  width: 33%;
-  height: 90px;                /* Reduced height */
-  object-fit: cover;
-  border-radius: 8px;
+.achievement-box:hover img {
+  transform: scale(1.08);
 }
 
-/* TEXT */
 .achievement-box h3 {
   color: #6eeaff;
-  font-size: 1.2rem;
-  margin-bottom: 0.3rem;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
 .achievement-box p {
   color: #d4e7ff;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  width: 100%;
 }
 
-/* ENTRANCE ANIMATION */
+/* Pagination buttons below cards */
+.pagination {
+  margin-top: auto;
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.pagination button {
+  padding: 0.7rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 0.8rem;
+  border: 2px solid #6eeaff;
+  background: transparent;
+  color: #6eeaff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination button:hover {
+  background-color: #6eeaff;
+  color: #0b0c1a;
+  box-shadow: 0 0 15px #6eeaff;
+}
+
+/* PAGE NAVIGATION BUTTONS — SAME STYLE AS FOLLOW ME BUTTON */
+.page-buttons {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.page-buttons .btn {
+  font-size: 1.8rem;
+  padding: 0.7rem 1.8rem;
+  border: 2px solid #6eeaff;
+  color: #6eeaff;
+  background: transparent;
+  border-radius: 2rem;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s;
+  cursor: pointer;
+}
+
+.page-buttons .btn:hover {
+  background: #6eeaff;
+  color: #0b0c1a;
+  box-shadow: 0 0 15px #6eeaff;
+  animation: zoomIn 0.6s ease forwards;
+}
+
+/* Achievements container entrance animation */
+.achievements {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideUp 0.8s ease forwards;
+}
+
+/* Cards entrance animation with stagger */
 .achievement-box {
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeUp 0.8s ease forwards;
+  animation-fill-mode: forwards;
+  animation-name: fadeSlideUp;
+  animation-duration: 0.6s;
+  animation-timing-function: ease-out;
 }
 
-/* STAGGER EFFECT */
-.achievement-box:nth-child(1) { animation-delay: 0.1s; }
-.achievement-box:nth-child(2) { animation-delay: 0.2s; }
-.achievement-box:nth-child(3) { animation-delay: 0.3s; }
-.achievement-box:nth-child(4) { animation-delay: 0.4s; }
-.achievement-box:nth-child(5) { animation-delay: 0.5s; }
-.achievement-box:nth-child(6) { animation-delay: 0.6s; }
-.achievement-box:nth-child(7) { animation-delay: 0.7s; }
-.achievement-box:nth-child(8) { animation-delay: 0.8s; }
+/* Stagger delays for cards */
+.achievement-box:nth-child(1) { animation-delay: 0.3s; }
+.achievement-box:nth-child(2) { animation-delay: 0.5s; }
+.achievement-box:nth-child(3) { animation-delay: 0.7s; }
+.achievement-box:nth-child(4) { animation-delay: 0.9s; }
+.achievement-box:nth-child(5) { animation-delay: 1.1s; }
+.achievement-box:nth-child(6) { animation-delay: 1.3s; }
+.achievement-box:nth-child(7) { animation-delay: 1.5s; }
+.achievement-box:nth-child(8) { animation-delay: 1.7s; }
 
-/* KEYFRAMES */
-@keyframes fadeUp {
+/* Fade and slide up keyframes */
+@keyframes fadeSlideUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* Smooth transition for transform and shadow */
-.timeline-item, .achievement-box {
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  cursor: pointer;
-}
-
-/* Hover effect: zoom + lift + glow */
-.timeline-item:hover, .achievement-box:hover {
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 0 30px rgba(110, 234, 255, 0.6);
-}
-
-/* Extra: zoom icon image inside the card */
-.timeline-item:hover .timeline-icon img,
-.achievement-box:hover img {
-  transform: scale(1.1);
-  transition: transform 0.4s ease;
 }
