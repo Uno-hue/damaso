@@ -528,7 +528,7 @@ html, body {
 
 .achievements {
   min-height: 100vh;
-  padding: 6rem 3rem 3rem; /* keep padding for header space */
+  padding: 5rem 2rem 2rem; /* keep padding for header space */
   background: linear-gradient(180deg, #0b0c1a, #131b33);
   display: flex;
   flex-direction: column;
@@ -708,4 +708,5 @@ html, body {
     transform: translateY(0);
   }
 }
+
 
