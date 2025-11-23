@@ -293,7 +293,7 @@ html, body {
 /* EDUCATION SECTION - 5 cards fit in one line, full viewport width */
 .education {
   height: 100vh;                 /* Full screen height */
-  padding: 2rem 2rem;            /* Padding around content */
+  padding: 6rem 2rem 2rem;       /* Increased top padding further to move cards lower */
   background: linear-gradient(180deg, #0b0c1a, #131b33);
   display: flex;
   flex-direction: column;
