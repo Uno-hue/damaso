@@ -290,31 +290,31 @@ html, body {
   overflow: hidden;
 }
 
-/* EDUCATION SECTION - 3 cards on top row, 2 cards centered on bottom row, full viewport width */
+/* EDUCATION SECTION - smaller container */
 .education {
-  height: 65vh;                 /* Slightly taller to fit timeline and padding */
-  padding: 6rem 2rem 2rem;       /* Top padding to move cards lower */
+  height: 55vh;                 /* Reduced from 65vh */
+  padding: 4rem 1.5rem 1.5rem; /* Reduced padding */
   background: linear-gradient(180deg, #0b0c1a, #131b33);
   display: flex;
   flex-direction: column;
   justify-content: center;       /* Center vertically */
   box-sizing: border-box;
-  max-width: 100vw;
+  max-width: 90vw;              /* Reduced from 100vw */
   margin: 0 auto;
   font-family: 'Poppins', sans-serif;
   color: #ccc;
   overflow: hidden;
 }
 
-/* Grid container for timeline cards */
+/* Grid container for timeline cards - smaller */
 .timeline {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 1.5rem;                   /* Clean spacing */
+  gap: 1.2rem;                   /* Slightly tighter spacing */
   width: 100%;
-  height: 65vh;                  /* Fit nicely inside viewport */
-  max-width: 1200px;             /* Optional max width to center content */
+  height: 38vh;                  /* Reduced from 45vh */
+  max-width: 800px;              /* Reduced from 1000px */
   margin: 0 auto;
   padding: 0 1rem;
   box-sizing: border-box;
