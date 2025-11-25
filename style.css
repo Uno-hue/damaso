@@ -290,52 +290,57 @@ html, body {
   overflow: hidden;
 }
 
-/* EDUCATION SECTION - smaller container */
+/* EDUCATION (merged: smaller container + achievements sizing) */
 .education {
-  height: 55vh;                 /* Reduced from 65vh */
-  padding: 4rem 1.5rem 1.5rem; /* Reduced padding */
+  height: 55vh;                 /* Smaller container */
+  padding: 4rem 1.5rem 1.5rem;
   background: linear-gradient(180deg, #0b0c1a, #131b33);
   display: flex;
   flex-direction: column;
-  justify-content: center;       /* Center vertically */
+  justify-content: center;
   box-sizing: border-box;
-  max-width: 90vw;              /* Reduced from 100vw */
+
+  max-width: 1100px;            /* Achievements width */
   margin: 0 auto;
   font-family: 'Poppins', sans-serif;
   color: #ccc;
   overflow: hidden;
 }
 
-/* Grid container for timeline cards - smaller */
+/* TIMELINE — merged layout size + your 3x2 format */
 .timeline {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 1.2rem;                   /* Slightly tighter spacing */
+  grid-auto-rows: 190px;        /* Same as achievements */
+  gap: 1.2rem;                  /* Your spacing */
   width: 100%;
-  height: 38vh;                  /* Reduced from 45vh */
-  max-width: 800px;              /* Reduced from 1000px */
+  max-width: 900px;             /* Between 800px (yours) & 1100px (achievements) */
   margin: 0 auto;
-  padding: 0 1rem;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
-/* Individual card - square shape */
+/* Timeline cards (merged: your look + achievements sizing) */
 .timeline-item {
   background: #11172b;
   border-radius: 1rem;
-  padding: 1.2rem;
+  padding: 1rem;
   text-align: center;
+
   box-shadow: 0 0 12px rgba(110, 234, 255, 0.12);
   border: 1px solid rgba(110, 234, 255, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  aspect-ratio: 1 / 1;           /* Make cards square */
-  transition: 0.4s ease;
+
+  cursor: pointer;
+  font-size: 0.9rem;
   box-sizing: border-box;
-  opacity: 0;                   /* For fade-slide animation */
+
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+  opacity: 0;
   transform: translateY(20px);
   animation-fill-mode: forwards;
   animation-name: fadeSlideUp;
@@ -343,32 +348,29 @@ html, body {
   animation-timing-function: ease-out;
 }
 
-/* Bottom row: place 4th card in first column, 5th card in third column, center bottom row */
+/* Optional 3 top / 2 bottom layout */
 .timeline-item:nth-child(4) {
   grid-column: 1 / 2;
-  grid-row: 2 / 3;
 }
 
 .timeline-item:nth-child(5) {
   grid-column: 3 / 4;
-  grid-row: 2 / 3;
 }
 
-/* Hover effect */
+/* Hover */
 .timeline-item:hover {
   transform: translateY(-8px);
   box-shadow: 0 0 30px rgba(110, 234, 255, 0.5);
 }
 
-/* Image container - smaller size */
+/* Image box (merged sizes) */
 .timeline-icon {
-  width: 69%;
-  height: 89px;          /* Reduced height */
+  width: 100%;
+  height: 110px;                /* From achievements */
   border-radius: 10px;
   overflow: hidden;
   border: 2px solid #6eeaff;
   margin-bottom: 0.8rem;
-  flex-shrink: 0;
 }
 
 .timeline-icon img {
@@ -379,92 +381,50 @@ html, body {
   transition: transform 0.3s ease;
 }
 
-.timeline-item:hover .timeline-icon img {
+.timeline-item:hover img {
   transform: scale(1.05);
 }
 
-/* Text styles */
+/* Text */
 .timeline-content h3 {
   color: #6eeaff;
-  font-size: 1.2rem;
-  margin-bottom: 0.4rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
 }
 
 .timeline-content p {
   color: #d4e7ff;
-  font-size: 0.9rem;
-  line-height: 1.3;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 0.85rem;
+  line-height: 1.2;
 }
 
-/* Stagger animations with delays */
-.timeline-item:nth-child(1) {
-  animation-delay: 0.3s;
-}
-.timeline-item:nth-child(2) {
-  animation-delay: 0.5s;
-}
-.timeline-item:nth-child(3) {
-  animation-delay: 0.7s;
-}
-.timeline-item:nth-child(4) {
-  animation-delay: 0.9s;
-}
-.timeline-item:nth-child(5) {
-  animation-delay: 1.1s;
-}
+/* Animation delays */
+.timeline-item:nth-child(1) { animation-delay: 0.3s; }
+.timeline-item:nth-child(2) { animation-delay: 0.5s; }
+.timeline-item:nth-child(3) { animation-delay: 0.7s; }
+.timeline-item:nth-child(4) { animation-delay: 0.9s; }
+.timeline-item:nth-child(5) { animation-delay: 1.1s; }
 
-/* Responsive: 3 cards for medium screens (reset layout to one row) */
+/* Responsive: Med screens */
 @media (max-width: 1200px) {
   .timeline {
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    height: auto;
+    grid-auto-rows: 190px;
+    max-height: none;
   }
-  .timeline-item {
-    aspect-ratio: auto;
-    height: auto;
-  }
-  .timeline-content h3,
-  .timeline-content p {
-    white-space: normal;
-  }
-  /* Reset bottom row card placement */
+
   .timeline-item:nth-child(4),
   .timeline-item:nth-child(5) {
     grid-column: auto;
-    grid-row: auto;
   }
 }
 
-/* Responsive: 1 card per row on small screens */
+/* Responsive: Small screens */
 @media (max-width: 600px) {
   .timeline {
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    height: auto;
-  }
-  .timeline-item {
-    aspect-ratio: auto;
-    height: auto;
-    width: 100%;
-  }
-  .timeline-icon {
-    height: 90px;
-  }
-  .timeline-content h3,
-  .timeline-content p {
-    white-space: normal;
-  }
-  .timeline-item:nth-child(4),
-  .timeline-item:nth-child(5) {
-    grid-column: auto;
-    grid-row: auto;
+    grid-auto-rows: 190px;
+    max-height: none;
   }
 }
 
@@ -487,25 +447,15 @@ html, body {
   animation: jumpIn 0.8s ease forwards;
 }
 
-/* Jumping animation */
+/* Jump animation */
 @keyframes jumpIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-150%) scale(0.8);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(30px) scale(1.1);
-  }
-  80% {
-    transform: translateY(-10px) scale(1);
-  }
-  100% {
-    transform: translateY(0) scale(1);
-  }
+  0% { opacity: 0; transform: translateY(-150%) scale(0.8); }
+  60% { opacity: 1; transform: translateY(30px) scale(1.1); }
+  80% { transform: translateY(-10px) scale(1); }
+  100% { transform: translateY(0) scale(1); }
 }
 
-/* Splash fade out */
+/* Fade splash out */
 @keyframes splashFadeOut {
   to {
     opacity: 0;
@@ -513,19 +463,13 @@ html, body {
   }
 }
 
-/* Timeline fade-in and slide-up animation */
+/* Slide fade animation */
 @keyframes fadeSlideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-/* PAGE NAVIGATION BUTTONS — SAME STYLE AS FOLLOW ME BUTTON */
+/* PAGE NAV BUTTONS */
 .page-buttons {
   margin-top: 3rem;
   display: flex;
@@ -544,7 +488,6 @@ html, body {
   cursor: pointer;
 }
 
-/* Hover + Glow + Zoom (same as Follow me button) */
 .page-buttons .btn:hover {
   background: #6eeaff;
   color: #0b0c1a;
@@ -552,14 +495,9 @@ html, body {
   animation: zoomIn 0.6s ease forwards;
 }
 
-/* Zoom in animation */
 @keyframes zoomIn {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.1);
-  }
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
 }
 
 .achievements {
