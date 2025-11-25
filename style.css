@@ -290,7 +290,7 @@ html, body {
   overflow: hidden;
 }
 
-/* EDUCATION SECTION - 3 cards on top row, 2 cards on bottom row, full viewport width */
+/* EDUCATION SECTION - 3 cards on top row, 2 cards centered on bottom row, full viewport width */
 .education {
   height: 65vh;                 /* Slightly taller to fit timeline and padding */
   padding: 6rem 2rem 2rem;       /* Top padding to move cards lower */
@@ -309,22 +309,18 @@ html, body {
 /* Grid container for timeline cards */
 .timeline {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);  /* 3 columns */
-  grid-template-rows: 1fr 1fr;             /* 2 rows */
-  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1.5rem;                   /* Clean spacing */
   width: 100%;
-  height: 60vh;                           /* Fits nicely inside viewport */
+  height: 65vh;                  /* Fit nicely inside viewport */
+  max-width: 1200px;             /* Optional max width to center content */
+  margin: 0 auto;
   padding: 0 1rem;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
-/* Place the 5th card to span the first two columns of second row */
-.timeline-item:nth-child(5) {
-  grid-column: 1 / span 2; /* span two columns */
-}
-
-/* Individual card */
+/* Individual card - square shape */
 .timeline-item {
   background: #11172b;
   border-radius: 1rem;
@@ -335,12 +331,30 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;  /* Align content at top */
-  height: 100%;              /* Fill vertical space of grid cell */
+  justify-content: flex-start;
+  aspect-ratio: 1 / 1;           /* Make cards square */
   transition: 0.4s ease;
   box-sizing: border-box;
+  opacity: 0;                   /* For fade-slide animation */
+  transform: translateY(20px);
+  animation-fill-mode: forwards;
+  animation-name: fadeSlideUp;
+  animation-duration: 0.6s;
+  animation-timing-function: ease-out;
 }
 
+/* Bottom row: place 4th card in first column, 5th card in third column, center bottom row */
+.timeline-item:nth-child(4) {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.timeline-item:nth-child(5) {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+/* Hover effect */
 .timeline-item:hover {
   transform: translateY(-8px);
   box-shadow: 0 0 30px rgba(110, 234, 255, 0.5);
@@ -388,7 +402,24 @@ html, body {
   text-overflow: ellipsis;
 }
 
-/* Responsive: 3 cards for medium screens */
+/* Stagger animations with delays */
+.timeline-item:nth-child(1) {
+  animation-delay: 0.3s;
+}
+.timeline-item:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.timeline-item:nth-child(3) {
+  animation-delay: 0.7s;
+}
+.timeline-item:nth-child(4) {
+  animation-delay: 0.9s;
+}
+.timeline-item:nth-child(5) {
+  animation-delay: 1.1s;
+}
+
+/* Responsive: 3 cards for medium screens (reset layout to one row) */
 @media (max-width: 1200px) {
   .timeline {
     grid-template-columns: repeat(3, 1fr);
@@ -396,15 +427,18 @@ html, body {
     height: auto;
   }
   .timeline-item {
+    aspect-ratio: auto;
     height: auto;
   }
   .timeline-content h3,
   .timeline-content p {
     white-space: normal;
   }
-  /* Reset 5th card spanning on smaller screens */
+  /* Reset bottom row card placement */
+  .timeline-item:nth-child(4),
   .timeline-item:nth-child(5) {
     grid-column: auto;
+    grid-row: auto;
   }
 }
 
@@ -416,7 +450,9 @@ html, body {
     height: auto;
   }
   .timeline-item {
+    aspect-ratio: auto;
     height: auto;
+    width: 100%;
   }
   .timeline-icon {
     height: 90px;
@@ -425,8 +461,10 @@ html, body {
   .timeline-content p {
     white-space: normal;
   }
+  .timeline-item:nth-child(4),
   .timeline-item:nth-child(5) {
     grid-column: auto;
+    grid-row: auto;
   }
 }
 
@@ -487,33 +525,6 @@ html, body {
   }
 }
 
-/* Initially hide timeline items */
-.timeline-item {
-  opacity: 0;
-  transform: translateY(20px);
-  animation-fill-mode: forwards;
-  animation-name: fadeSlideUp;
-  animation-duration: 0.6s;
-  animation-timing-function: ease-out;
-}
-
-/* Stagger animations with delays */
-.timeline-item:nth-child(1) {
-  animation-delay: 0.3s;
-}
-.timeline-item:nth-child(2) {
-  animation-delay: 0.5s;
-}
-.timeline-item:nth-child(3) {
-  animation-delay: 0.7s;
-}
-.timeline-item:nth-child(4) {
-  animation-delay: 0.9s;
-}
-.timeline-item:nth-child(5) {
-  animation-delay: 1.1s;
-}
-
 /* PAGE NAVIGATION BUTTONS — SAME STYLE AS FOLLOW ME BUTTON */
 .page-buttons {
   margin-top: 3rem;
@@ -541,6 +552,15 @@ html, body {
   animation: zoomIn 0.6s ease forwards;
 }
 
+/* Zoom in animation */
+@keyframes zoomIn {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
 
 .achievements {
   min-height: 100vh;
