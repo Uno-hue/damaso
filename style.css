@@ -795,30 +795,61 @@ html, body {
   }
 }
 
-/* =============== NAMES FOOTER =============== */
-.names-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
-    background: linear-gradient(to top, rgba(10, 10, 26, 1), rgba(10, 10, 26, 0.806), transparent 100%);
-    padding: 2rem 5% 3rem;
+.batchmates-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  /* Shift background image down by 10% */
+  background: url('Batchmates5.png') no-repeat center 60% fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0;
+  margin: 0;
 }
 
-.name-list-container {
-    column-count: 5;
-    column-gap: 20px;
-    max-width: 1400px;
-    margin: 0 auto;
+/* Hide the batchmates-image-section */
+.batchmates-image-section {
+  display: none;
 }
 
-.name-list-container p {
-    font-size: 0.85rem;
-    margin-bottom: 0.3rem;
-    line-height: 1.4;
-    color: rgba(255, 255, 255, 0.9);
-    break-inside: avoid;
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
+/* Page buttons fixed to bottom-left */
+.page-buttons {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+}
+
+/* Smaller button */
+.page-buttons .btn {
+  font-size: 1.2rem;              /* smaller font */
+  padding: 0.5rem 1.2rem;         /* smaller padding */
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #6eeaff;
+  border: 2px solid #6eeaff;
+  border-radius: 2rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 6px #6eeaff;   /* lighter glow */
+}
+
+.page-buttons .btn:hover {
+  background-color: #6eeaff;
+  color: #0b0c1a;
+  box-shadow: 0 0 15px #6eeaff;
+}
+
+/* Remove default margins/paddings from html and body */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  color: #eaeaea;
 }
