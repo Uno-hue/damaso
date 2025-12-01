@@ -795,114 +795,30 @@ html, body {
   }
 }
 
-/* ------------------------------
-   MY BATCHMATES PAGE — EXCLUSIVE CSS
---------------------------------*/
-
-.batchmates-page {
-  height: 100vh;
-  padding: 6rem 2rem 2rem;
-  background: linear-gradient(180deg, #0b0c1a, #131b33);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box;
-  color: #ccc;
-  overflow: hidden;
-  font-family: 'Poppins', sans-serif;
+/* =============== NAMES FOOTER =============== */
+.names-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: linear-gradient(to top, rgba(10, 10, 26, 1), rgba(10, 10, 26, 0.806), transparent 100%);
+    padding: 2rem 5% 3rem;
 }
 
-/* Grid: 3 cards on desktop */
-.batchmates-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.3rem;
-  width: 100%;
-  height: 60vh;
-  padding: 0 1rem;
-  box-sizing: border-box;
+.name-list-container {
+    column-count: 5;
+    column-gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-/* Card */
-.batchmates-card {
-  background: #11172b;
-  border-radius: 1rem;
-  padding: 1.2rem;
-  text-align: center;
-  box-shadow: 0 0 12px rgba(110, 234, 255, 0.12);
-  border: 1px solid rgba(110, 234, 255, 0.15);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: 0.4s ease;
-  animation: fadeSlideUp 0.7s ease forwards;
-  opacity: 0;
-}
-
-/* Hover glow */
-.batchmates-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 30px rgba(110, 234, 255, 0.5);
-}
-
-/* Image */
-.batchmates-photo {
-  width: 75%;
-  height: 145px;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 2px solid #6eeaff;
-  margin-bottom: 0.8rem;
-}
-
-.batchmates-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: 0.3s ease;
-}
-
-.batchmates-card:hover img {
-  transform: scale(1.05);
-}
-
-/* Text */
-.batchmates-card h3 {
-  color: #6eeaff;
-  font-size: 1.2rem;
-  margin-bottom: 0.4rem;
-}
-
-.batchmates-card p {
-  color: #d4e7ff;
-  font-size: 0.9rem;
-  line-height: 1.3;
-}
-
-/* Animations */
-@keyframes fadeSlideUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-.batchmates-card:nth-child(1) { animation-delay: 0.3s; }
-.batchmates-card:nth-child(2) { animation-delay: 0.5s; }
-.batchmates-card:nth-child(3) { animation-delay: 0.7s; }
-
-/* Responsive: 2 cards */
-@media (max-width: 900px) {
-  .batchmates-grid {
-    grid-template-columns: repeat(2, 1fr);
-    height: auto;
-  }
-}
-
-/* Responsive: 1 card */
-@media (max-width: 600px) {
-  .batchmates-grid {
-    grid-template-columns: 1fr;
-  }
-  .batchmates-photo {
-    height: 100px;
-  }
+.name-list-container p {
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9);
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
 }
