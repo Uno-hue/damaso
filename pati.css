@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 🔥 FIX 1 — NO SCROLL */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;      /* stops all scrolling on whole page */
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(180deg, #0b0c1a, #101529, #131b33);
+  color: #eaeaea;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6rem;              /* fixed header height */
+  padding: 1rem 9%;
+  background-color: rgba(13, 15, 35, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.logo {
+  font-size: 3rem;
+  color: #5ef0ff;
+  font-weight: 800;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 15px #5ef0ff;
+}
+
+nav a {
+  font-size: 1.8rem;
+  color: #eaeaea;
+  margin-left: 4rem;
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+  transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  border-bottom: 3px solid #5ef0ff;
+}
+
+
+.batchmates-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  /* Shift background image down by 10% */
+  background: url('Batchmates1.png') no-repeat center 60% fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0;
+  margin: 0;
+}
+
+/* Hide the batchmates-image-section */
+.batchmates-image-section {
+  display: none;
+}
+
+/* Page buttons fixed to bottom-left */
+.page-buttons {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+}
+
+/* Smaller button */
+.page-buttons .btn {
+  font-size: 1.2rem;              /* smaller font */
+  padding: 0.5rem 1.2rem;         /* smaller padding */
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #6eeaff;
+  border: 2px solid #6eeaff;
+  border-radius: 2rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 6px #6eeaff;   /* lighter glow */
+}
+
+.page-buttons .btn:hover {
+  background-color: #6eeaff;
+  color: #0b0c1a;
+  box-shadow: 0 0 15px #6eeaff;
+}
+
+/* Remove default margins/paddings from html and body */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  color: #eaeaea;
+}
